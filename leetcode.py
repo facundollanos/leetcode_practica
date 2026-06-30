@@ -58,3 +58,52 @@ class Solution:
             ans += (1 << p)
 
         return min(max(sign * ans, -2**31), 2**31 - 1)
+
+
+
+
+        #EJERCICIO 31
+        class Solution:
+    def nextPermutation(self, nums):
+        i = len(nums) - 2
+        while i >= 0 and nums[i + 1] <= nums[i]:
+            i -= 1
+        if i >= 0:
+            j = len(nums) - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            self.swap(nums, i, j)
+        self.reverse(nums, i + 1)
+
+    def reverse(self, nums, start):
+        i, j = start, len(nums) - 1
+        while i < j:
+            self.swap(nums, i, j)
+            i += 1
+            j -= 1
+
+    def swap(self, nums, i, j):
+        temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+
+
+        #EJERCICIO 32
+
+
+        class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        stack = [-1]
+        max_len = 0
+
+        for i in range(len(s)):
+            if s[i] == "(":
+                stack.append(i)
+            else:
+                stack.pop()
+                if len(stack) == 0:
+                    stack.append(i)
+                else:
+                    max_len = max(max_len, i - stack[-1])
+        
+        return max_len
