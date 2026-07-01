@@ -107,3 +107,51 @@ class Solution:
                     max_len = max(max_len, i - stack[-1])
         
         return max_len
+
+
+#739. Daily Temperatures
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        st = []
+        res = [0] * len(temperatures)
+
+        for i in range(len(temperatures)):
+            while st and temperatures[i] > temperatures[st[-1]]:
+                idx = st.pop()
+                res[idx] = i - idx
+            st.append(i)
+        
+        return res
+
+##901. Online Stock Span
+class StockSpanner:
+
+    def __init__(self):
+        
+        # maintain a monotonic stack for stock entry
+        
+		## definition of stock entry:
+        # first parameter is price quote
+        # second parameter is price span
+        self.monotone_stack = []
+              
+        
+        
+    def next(self, price: int) -> int:
+
+        stack = self.monotone_stack
+        
+        cur_price_quote, cur_price_span = price, 1
+        
+        # Compute price span in stock data with monotonic stack
+        while stack and stack[-1][0] <= cur_price_quote:
+            
+            prev_price_quote, prev_price_span = stack.pop()
+            
+            # update current price span with history data in stack
+            cur_price_span += prev_price_span
+        
+        # Update latest price quote and price span
+        stack.append( (cur_price_quote, cur_price_span) )
+        
+        return cur_price_span
