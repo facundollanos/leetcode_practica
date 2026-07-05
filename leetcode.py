@@ -155,3 +155,39 @@ class StockSpanner:
         stack.append( (cur_price_quote, cur_price_span) )
         
         return cur_price_span
+
+
+        #443. String Compression
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        i = 0
+        res = 0
+        while i < len(chars):
+            group_length = 1
+            while (i + group_length < len(chars)
+                   and chars[i + group_length] == chars[i]):
+                group_length += 1
+            chars[res] = chars[i]
+            res += 1
+            if group_length > 1:
+                str_repr = str(group_length)
+                chars[res:res+len(str_repr)] = list(str_repr)
+                res += len(str_repr)
+            i += group_length
+        return res
+
+
+        #334. Increasing Triplet Subsequence
+        class Solution:
+    def increasingTriplet(self, nums):
+        first = float('inf')
+        second = float('inf')
+        for n in nums:
+            if n <= first:
+                first = n
+            elif n <= second:
+                second = n
+            else:
+                return True
+        return False
