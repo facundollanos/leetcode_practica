@@ -108,6 +108,86 @@ class Solution:
         
         return max_len
 
+#345. Reverse Vowels of a String
+class Solution(object):
+    def reverseVowels(self, s):
+        # Convert the input string to a character array.
+        word = list(s)
+        start = 0
+        end = len(s) - 1
+        vowels = "aeiouAEIOU"
+        
+        # Loop until the start pointer is no longer less than the end pointer.
+        while start < end:
+            # Move the start pointer towards the end until it points to a vowel.
+            while start < end and vowels.find(word[start]) == -1:
+                start += 1
+            
+            # Move the end pointer towards the start until it points to a vowel.
+            while start < end and vowels.find(word[end]) == -1:
+                end -= 1
+            
+            # Swap the vowels found at the start and end positions.
+            word[start], word[end] = word[end], word[start]
+            
+            # Move the pointers towards each other for the next iteration.
+            start += 1
+            end -= 1
+        
+        # Convert the character array back to a string and return the result.
+        return "".join(word)
+
+
+#605. Can Place Flowers
+class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        count = 0
+        for i in range(len(flowerbed)):
+            # Check if the current plot is empty.
+            if flowerbed[i] == 0:
+                # Check if the left and right plots are empty.
+                empty_left_plot = (i == 0) or (flowerbed[i - 1] == 0)
+                empty_right_lot = (i == len(flowerbed) - 1) or (flowerbed[i + 1] == 0)
+                
+                # If both plots are empty, we can plant a flower here.
+                if empty_left_plot and empty_right_lot:
+                    flowerbed[i] = 1
+                    count += 1
+                    
+        return count >= n
+
+        class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        count = 0
+        for i in range(len(flowerbed)):
+            # Check if the current plot is empty.
+            if flowerbed[i] == 0:
+                # Check if the left and right plots are empty.
+                empty_left_plot = (i == 0) or (flowerbed[i - 1] == 0)
+                empty_right_lot = (i == len(flowerbed) - 1) or (flowerbed[i + 1] == 0)
+                
+                # If both plots are empty, we can plant a flower here.
+                if empty_left_plot and empty_right_lot:
+                    flowerbed[i] = 1
+                    count += 1
+                    if count >= n:
+                        return True
+                    
+        return count >= n
+
+#1431. Kids With the Greatest Number of Candies
+
+class Solution(object):
+    def kidsWithCandies(self, candies, extraCandies):
+        # Find out the greatest number of candies among all the kids.
+        maxCandies = max(candies)
+        # For each kid, check if they will have greatest number of candies
+        # among all the kids.
+        result = []
+        for i in range(len(candies)):            
+            result.append(candies[i] + extraCandies >= maxCandies)
+        return result
+        
 
 #739. Daily Temperatures
 class Solution:
@@ -191,3 +271,17 @@ class Solution:
             else:
                 return True
         return False
+
+
+        #332. Reconstruct Itinerary
+        def findItinerary(self, tickets):
+    targets = collections.defaultdict(list)
+    for a, b in sorted(tickets)[::-1]:
+        targets[a] += b,
+    route = []
+    def visit(airport):
+        while targets[airport]:
+            visit(targets[airport].pop())
+        route.append(airport)
+    visit('JFK')
+    return route[::-1]
