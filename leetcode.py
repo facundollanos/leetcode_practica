@@ -108,6 +108,44 @@ class Solution:
         
         return max_len
 
+
+##67. Add Binary
+class Solution:
+  def addBinary(self, a: str, b: str) -> str:
+    s = []
+    carry = 0
+    i = len(a) - 1
+    j = len(b) - 1
+
+    while i >= 0 or j >= 0 or carry:
+      if i >= 0:
+        carry += int(a[i])
+        i -= 1
+      if j >= 0:
+        carry += int(b[j])
+        j -= 1
+      s.append(str(carry % 2))
+      carry //= 2
+
+    return ''.join(reversed(s))
+
+
+## 69 Sqrt(x)
+
+
+##70. Climbing Stairs
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        memo = {}
+        return self.helper(n, memo)
+    
+    def helper(self, n: int, memo: dict[int, int]) -> int:
+        if n == 0 or n == 1:
+            return 1
+        if n not in memo:
+            memo[n] = self.helper(n-1, memo) + self.helper(n-2, memo)
+        return memo[n]
+
 #345. Reverse Vowels of a String
 class Solution(object):
     def reverseVowels(self, s):
