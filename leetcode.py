@@ -146,6 +146,62 @@ class Solution:
             memo[n] = self.helper(n-1, memo) + self.helper(n-2, memo)
         return memo[n]
 
+
+### 88. Merge Sorted Array
+class Solution(object):
+    def merge(self, nums1, m, nums2, n):
+        i = m - 1
+        j = n - 1
+        k = m + n - 1
+        
+        while j >= 0:
+            if i >= 0 and nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                i -= 1
+            else:
+                nums1[k] = nums2[j]
+                j -= 1
+            k -= 1
+
+
+##94. Binary Tree Inorder Traversal
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def inorderTraversal(self, root):
+        res = []
+        stack = []
+        curr = root
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            res.append(curr.val)
+
+        return res
+
+##100. Same Tree
+class Solution:
+    def isSameTree(self, p, q):
+        # If both nodes are None, they are identical
+        if p is None and q is None:
+            return True
+        # If only one of the nodes is None, they are not identical
+        if p is None or q is None:
+            return False
+        # Check if values are equal and recursively check left and right subtrees
+        if p.val == q.val:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        # Values are not equal, they are not identical
+        return False
+        
+
 #345. Reverse Vowels of a String
 class Solution(object):
     def reverseVowels(self, s):
