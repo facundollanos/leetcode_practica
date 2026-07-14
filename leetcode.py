@@ -379,3 +379,38 @@ class Solution:
         route.append(airport)
     visit('JFK')
     return route[::-1]
+
+###1071. Greatest Common Divisor of Strings
+
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        len1, len2 = len(str1), len(str2)
+        
+        def valid(k):
+            if len1 % k or len2 % k: 
+                return False
+            n1, n2 = len1 // k, len2 // k
+            base = str1[:k]
+            return str1 == n1 * base and str2 == n2 * base 
+        
+        for i in range(min(len1, len2), 0, -1):
+            if valid(i):
+                return str1[:i]
+        return ""
+
+
+    ##1768. Merge Strings Alternately
+
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        result = []
+        n = max(len(word1), len(word2))
+        for i in range(n):
+            if i < len(word1):
+                result += word1[i]
+            if i < len(word2):
+                result += word2[i]
+
+        return "".join(result)
+
+##

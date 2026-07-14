@@ -143,3 +143,49 @@ class Solution {
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }
+
+
+////1071. Greatest Common Divisor of Strings
+class Solution {
+    public boolean valid(String str1, String str2, int k) {
+        int len1 = str1.length(), len2 = str2.length();
+        if (len1 % k > 0 || len2 % k > 0) {
+            return false;
+        } else {
+            String base = str1.substring(0, k);
+            return str1.replace(base, "").isEmpty() && str2.replace(base, "").isEmpty();
+        }
+    }
+    
+    
+    public String gcdOfStrings(String str1, String str2) {
+        int len1 = str1.length(), len2 = str2.length();
+        for (int i = Math.min(len1, len2); i >= 1; --i) {
+            if (valid(str1, str2, i)) {
+                return str1.substring(0, i);
+            }
+        }
+        return "";
+    }
+}
+
+
+///1768. Merge Strings Alternately
+class Solution {
+    public String mergeAlternately(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < Math.max(m, n); i++) {
+            if (i < m) {
+                result.append(word1.charAt(i));
+            }
+            if (i < n) {
+                result.append(word2.charAt(i));
+            }
+        }
+
+        return result.toString();
+    }
+}
