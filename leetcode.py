@@ -413,4 +413,66 @@ class Solution(object):
 
         return "".join(result)
 
-##
+##283. Move Zeroes
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        left = 0
+
+        for right in range(len(nums)):
+            if nums[right] != 0:
+                nums[right], nums[left] = nums[left], nums[right]
+                left += 1
+        
+        return nums
+
+
+##392. Is Subsequence
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        sp = tp = 0
+
+        while sp < len(s) and tp < len(t):
+            if s[sp] == t[tp]:
+                sp += 1
+            tp += 1
+        
+        return sp == len(s)
+
+
+##11. Container With Most Water
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        max_area = 0
+        left = 0
+        right = len(height) - 1
+
+        while left < right:
+            max_area = max(max_area, (right - left) * min(height[left], height[right]))
+
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        
+        return max_area
+
+##1679. Max Number of K-Sum Pairs
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        i, j = 0, len(nums) - 1
+        count = 0
+
+        while i < j:
+            total = nums[i] + nums[j]
+            if total == k:
+                count += 1
+                i += 1
+                j -= 1
+            elif total > k:
+                j -= 1
+            else:
+                i += 1
+
+        return count

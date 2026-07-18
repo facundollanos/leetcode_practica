@@ -189,3 +189,90 @@ class Solution {
         return result.toString();
     }
 }
+
+
+
+//283. Move Zeroes
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int left = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] != 0) {
+                int temp = nums[right];
+                nums[right] = nums[left];
+                nums[left] = temp;
+                left++;
+            }
+        }        
+    }
+}
+
+
+//392. Is Subsequence
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int sp = 0;
+        int tp = 0;
+
+        while (sp < s.length() && tp < t.length()) {
+            if (s.charAt(sp) == t.charAt(tp)) {
+                sp++;
+            }
+            tp++;
+        }
+
+        return sp == s.length();        
+    }
+}
+
+//11. Container With Most Water
+class Solution {
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        int left = 0;
+        int right = height.length - 1;
+
+        while (left < right) {
+            maxArea = Math.max(maxArea, (right - left) * Math.min(height[left], height[right]));
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;        
+    }
+}
+// 1679. Max Number of K-Sum Pairs
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+        // Sort the array to use two-pointer technique
+        Arrays.sort(nums);
+        int count = 0;
+        int i = 0;
+        int j = nums.length - 1;
+
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+
+            if (sum == k) {
+                // Found a valid pair
+                count++;
+                i++;
+                j--;
+            } else if (sum > k) {
+                // Too big, move the end pointer
+                j--;
+            } else {
+                // Too small, move the start pointer
+                i++;
+            }
+        }
+
+        return count;
+    }
+}

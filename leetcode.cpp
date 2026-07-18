@@ -213,3 +213,105 @@ public:
     }
 };
 
+
+//283. Move Zeroes
+class Solution {
+public:
+  void moveZeroes(vector<int>& nums) {
+      int n = nums.size();
+
+      // Count the zeroes
+      int numZeroes = 0;
+      for (int i = 0; i < n; i++) {
+          numZeroes += (nums[i] == 0);
+      }
+
+      // Make all the non-zero elements retain their original order.
+      vector<int> ans;
+      for (int i = 0; i < n; i++) {
+          if (nums[i] != 0) {
+              ans.push_back(nums[i]);
+          }
+      }
+
+      // Move all zeroes to the end
+      while (numZeroes--) {
+          ans.push_back(0);
+      }
+
+      // Combine the result
+      for (int i = 0; i < n; i++) {
+          nums[i] = ans[i];
+      }
+  }
+};
+
+
+//392. Is Subsequence
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int sp = 0;
+        int tp = 0;
+
+        while (sp < s.length() && tp < t.length()) {
+            if (s[sp] == t[tp]) {
+                sp++;
+            }
+            tp++;
+        }
+
+        return sp == s.length();        
+    }
+};
+
+
+//11. Container With Most Water
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int maxArea = 0;
+        int left = 0;
+        int right = height.size() - 1;
+
+        while (left < right) {
+            maxArea = max(maxArea, (right - left) * min(height[left], height[right]));
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;        
+    }
+};
+
+
+// 1679. Max Number of K-Sum Pairs
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end());
+        int i = 0, j = nums.size() - 1;
+        int count = 0;
+
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum == k) {
+                count++;
+                i++;
+                j--;
+            } else if (sum > k) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+
+        return count;
+    }
+};
