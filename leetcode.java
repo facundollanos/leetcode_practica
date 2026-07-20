@@ -1,5 +1,73 @@
 
+
+
+
 //FACILES
+
+
+//171. Excel Sheet Column Number
+
+class Solution {
+    public int titleToNumber(String columnTitle) {
+        long ans = 0;
+
+        // Same idea as decimal parsing, but base is 26.
+        for (int i = 0; i < columnTitle.length(); i++) {
+            char ch = columnTitle.charAt(i);
+            ans = ans * 26 + (ch - 'A' + 1);
+        }
+
+        return (int) ans;
+    }
+}
+
+//202. Happy Number
+
+class Solution {
+    public boolean isHappy(int n) {
+        Set<Integer> visit = new HashSet<>();
+        
+        while (!visit.contains(n)) {
+            visit.add(n);
+            n = getNextNumber(n);
+            if (n == 1) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private int getNextNumber(int n) {
+        int output = 0;
+        
+        while (n > 0) {
+            int digit = n % 10;
+            output += digit * digit;
+            n = n / 10;
+        }
+        
+        return output;
+    }
+}
+
+//203. Remove Linked List Elements
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode ans = new ListNode(0, head);
+        ListNode dummy = ans;
+
+        while (dummy != null) {
+            while (dummy.next != null && dummy.next.val == val) {
+                dummy.next = dummy.next.next;
+            }
+            dummy = dummy.next;
+        }
+
+        return ans.next;        
+    }
+}
+
 
 ///67. Add Binary
 class Solution 

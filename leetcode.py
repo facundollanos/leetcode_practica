@@ -1,4 +1,63 @@
+
+
+
+
 ##EJERCICIO 26
+
+
+##171. Excel Sheet Column Number
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        ans = 0
+
+        # Read left to right like normal positional numbers.
+        for ch in columnTitle:
+            # Shift existing value one base-26 place to the left,
+            # then add current letter value (A=1 ... Z=26).
+            ans = ans * 26 + (ord(ch) - ord('A') + 1)
+
+        return ans
+
+
+##202. Happy Number
+
+class Solution:
+    def isHappy(self, n: int) -> bool:    
+        visit = set()
+        
+        def get_next_number(n):    
+            output = 0
+            
+            while n:
+                digit = n % 10
+                output += digit ** 2
+                n = n // 10
+            
+            return output
+
+        while n not in visit:
+            visit.add(n)
+            n = get_next_number(n)
+            if n == 1:
+                return True
+        
+        return False
+
+
+##203. Remove Linked List Elements
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        ans = ListNode(0, head)
+        dummy = ans
+
+        while dummy:
+            while dummy.next and dummy.next.val == val:
+                dummy.next = dummy.next.next
+            dummy = dummy.next
+        
+        return ans.next
+
+        
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
@@ -456,6 +515,9 @@ class Solution:
                 right -= 1
         
         return max_area
+
+
+
 
 ##1679. Max Number of K-Sum Pairs
 class Solution:

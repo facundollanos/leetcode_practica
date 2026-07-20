@@ -1,5 +1,78 @@
 ///FACILES
 
+//171. Excel Sheet Column Number
+class Solution {
+public:
+    int titleToNumber(string columnTitle) {
+        long long ans = 0;
+
+        // Positional system in base-26 with digits A..Z mapped to 1..26.
+        for (char ch : columnTitle) {
+            ans = ans * 26 + (ch - 'A' + 1);
+        }
+
+        return (int)ans;
+    }
+};
+
+
+
+//202. Happy Number
+
+class Solution {
+public:
+    bool isHappy(int n) {
+        unordered_set<int> visit;
+        
+        while (visit.find(n) == visit.end()) {
+            visit.insert(n);
+            n = getNextNumber(n);
+            if (n == 1) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+private:
+    int getNextNumber(int n) {
+        int output = 0;
+        
+        while (n > 0) {
+            int digit = n % 10;
+            output += digit * digit;
+            n = n / 10;
+        }
+        
+        return output;
+    }
+};
+
+//203. Remove Linked List Elements
+
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        ListNode* ans = new ListNode(0, head);
+        ListNode* dummy = ans;
+
+        while (dummy != nullptr) {
+            while (dummy->next != nullptr && dummy->next->val == val) {
+                dummy->next = dummy->next->next;
+            }
+            dummy = dummy->next;
+        }
+        
+        ListNode* result = ans->next;
+        delete ans;
+
+        return result;        
+    }
+};
+
+
+
 
 ///67. Add Binary
 class Solution {
