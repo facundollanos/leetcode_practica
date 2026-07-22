@@ -1,4 +1,42 @@
 
+##205. Isomorphic Strings
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        char_index_s = {}
+        char_index_t = {}
+
+        for i in range(len(s)):
+            if s[i] not in char_index_s:
+                char_index_s[s[i]] = i
+
+            if t[i] not in char_index_t:
+                char_index_t[t[i]] = i
+            
+            if char_index_s[s[i]] != char_index_t[t[i]]:
+                return False
+
+        return True
+
+##206. Reverse Linked List
+
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution(object):
+    def reverseList(self, head):
+        prev = None  # Initialize prev as None
+        curr = head  # Start with curr at the head of the list
+
+        while curr:
+            temp = curr.next  # Store the next node
+            curr.next = prev  # Reverse the pointer
+            prev = curr       # Move prev forward
+            curr = temp      # Move curr forward
+
+        return prev  # prev is the new head of the reversed list
 
 
 

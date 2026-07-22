@@ -1,5 +1,52 @@
 ///FACILES
 
+////205. Isomorphic Strings
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char, int> charIndexS;
+        unordered_map<char, int> charIndexT;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (charIndexS.find(s[i]) == charIndexS.end()) {
+                charIndexS[s[i]] = i;
+            }
+
+            if (charIndexT.find(t[i]) == charIndexT.end()) {
+                charIndexT[t[i]] = i;
+            }
+
+            if (charIndexS[s[i]] != charIndexT[t[i]]) {
+                return false;
+            }
+        }
+
+        return true;        
+    }
+};
+
+//206. Reverse Linked List
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while (curr != nullptr) {
+            ListNode* temp = curr->next; // Store the next node
+            curr->next = prev;            // Reverse the current node's pointer
+            prev = curr;                  // Move prev to current node
+            curr = temp;                  // Move to the next node
+        }
+        return prev; // New head of the reversed list
+    }
+};
+
+
+
+
 //171. Excel Sheet Column Number
 class Solution {
 public:
