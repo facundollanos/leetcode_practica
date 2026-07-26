@@ -39,7 +39,38 @@ class Solution(object):
         return prev  # prev is the new head of the reversed list
 
 
+##217. Contains Duplicate
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums.sort()
+        n = len(nums)
+        for i in range(1, n):
+            if nums[i] == nums[i - 1]:
+                return True
+        return False
 
+
+##219. Contains Duplicate II
+
+from typing import List
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        window_set = set()
+        
+        for i in range(len(nums)):
+            // Remove element that is no longer in the window
+            if i > k:
+                window_set.remove(nums[i - k - 1])
+            
+            // Check for duplicate in the current window
+            if nums[i] in window_set:
+                return True
+            
+            window_set.add(nums[i])
+            
+        return False
+        
 ##EJERCICIO 26
 
 
