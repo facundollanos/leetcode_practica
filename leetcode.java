@@ -83,6 +83,53 @@ class Solution {
 }
 
 
+//225. Implement Stack using Queues
+class MyStack {
+
+    private Queue<Integer> q;
+
+    public MyStack() {
+        q = new LinkedList<>();
+    }
+
+    public void push(int x) {
+        q.add(x);
+        for (int i = 0; i < q.size() - 1; i++) {
+            q.add(q.poll());
+        }
+    }
+
+    public int pop() {
+        return q.poll();
+    }
+
+    public int top() {
+        return q.peek();
+    }
+
+    public boolean empty() {
+        return q.isEmpty();
+    }
+}
+
+
+///226. Invert Binary Tree
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        
+        invertTree(root.left);
+        invertTree(root.right);
+        
+        return root;        
+    }
+}
 
 //171. Excel Sheet Column Number
 

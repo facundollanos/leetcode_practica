@@ -60,6 +60,60 @@ public:
 };
 
 
+//225. Implement Stack using Queues
+
+class MyStack {
+private:
+    std::queue<int> q;
+
+public:
+    MyStack() {}
+
+    void push(int x) {
+        q.push(x);
+        for (int i = 0; i < q.size() - 1; i++) {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+
+    int pop() {
+        int top = q.front();
+        q.pop();
+        return top;
+    }
+
+    int top() {
+        return q.front();
+    }
+
+    bool empty() {
+        return q.empty();
+    }
+};
+
+
+////226. Invert Binary Tree
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+        
+        TreeNode* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+        
+        invertTree(root->left);
+        invertTree(root->right);
+        
+        return root;        
+    }
+};
+
+
+
 
 
 //171. Excel Sheet Column Number
