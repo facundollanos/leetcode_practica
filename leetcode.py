@@ -183,6 +183,44 @@ class Solution:
         return True
 
 
+# 242. Valid Anagram
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:  
+        if len(s) != len(t):
+            return False
+
+        counter = {}
+
+        for char in s:
+            counter[char] = counter.get(char, 0) + 1
+
+        for char in t:
+            if char not in counter or counter[char] == 0:
+                return False
+            counter[char] -= 1
+
+        return True
+
+
+# 257. Binary Tree Paths
+class Solution(object):
+    def binaryTreePaths(self, root):
+        res = []
+        if not root:
+            return res
+        stack = [(root, str(root.val))]
+        while stack:
+            node, path = stack.pop()
+            if not node.left and not node.right:
+                res.append(path)
+            if node.right:
+                stack.append((node.right, path + "->" + str(node.right.val)))
+            if node.left:
+                stack.append((node.left, path + "->" + str(node.left.val)))
+        return res
+
+
+
 ##EJERCICIO 26
 
 

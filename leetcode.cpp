@@ -195,6 +195,71 @@ public:
     }
 };
 
+// 234. Palindrome Linked List
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode *slow = head, *fast = head, *prev, *temp;
+        while (fast && fast->next)
+            slow = slow->next, fast = fast->next->next;
+        prev = slow, slow = slow->next, prev->next = NULL;
+        while (slow)
+            temp = slow->next, slow->next = prev, prev = slow, slow = temp;
+        fast = head, slow = prev;
+        while (slow)
+            if (fast->val != slow->val) return false;
+            else fast = fast->next, slow = slow->next;
+        return true;
+    }
+};
+
+
+// 242. Valid Anagram
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        unordered_map<char, int> counter;
+
+        for (char ch : s) {
+            counter[ch] = counter[ch] + 1;
+        }
+
+        for (char ch : t) {
+            if (counter.find(ch) == counter.end() || counter[ch] == 0) {
+                return false;
+            }
+            counter[ch] = counter[ch] - 1;
+        }
+
+        return true;        
+    }
+};
+
+
+
+// 257. Binary Tree Paths
+class Solution {
+public:
+    void findPath(TreeNode* node, vector<string>& ans, string temp) {
+        temp += to_string(node->val);  // Add the current node value to the path
+        if (node->left) findPath(node->left, ans, temp + "->");  // Traverse left
+        if (node->right) findPath(node->right, ans, temp + "->"); // Traverse right
+        if (!node->left && !node->right) ans.push_back(temp);  // Add path if leaf node
+    }
+
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> ans;
+        if (root) findPath(root, ans, "");  // Start traversal from the root
+        return ans;
+    }
+};
+
+
+// 
 
 //171. Excel Sheet Column Number
 class Solution {

@@ -238,6 +238,48 @@ class Solution {
 }
 
 
+// 242. Valid Anagram
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> counter = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            counter.put(ch, counter.getOrDefault(ch, 0) + 1);
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            char ch = t.charAt(i);
+            if (!counter.containsKey(ch) || counter.get(ch) == 0) {
+                return false;
+            }
+            counter.put(ch, counter.get(ch) - 1);
+        }
+
+        return true;        
+    }
+}
+
+// 257. Binary Tree Paths
+
+public List<String> binaryTreePaths(TreeNode root) {
+    List<String> answer = new ArrayList<String>();
+    if (root != null) searchBT(root, "", answer);
+    return answer;
+}
+private void searchBT(TreeNode root, String path, List<String> answer) {
+    if (root.left == null && root.right == null) answer.add(path + root.val);
+    if (root.left != null) searchBT(root.left, path + root.val + "->", answer);
+    if (root.right != null) searchBT(root.right, path + root.val + "->", answer);
+}
+
+
+
+
 //171. Excel Sheet Column Number
 
 class Solution {
