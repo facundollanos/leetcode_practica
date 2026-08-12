@@ -278,6 +278,18 @@ private void searchBT(TreeNode root, String path, List<String> answer) {
 }
 
 
+// 258. Add Digits
+
+class Solution {
+    public int addDigits(int num) {
+        if (num == 0)
+            return 0;
+        if (num % 9 == 0)
+            return 9;
+        return num % 9;
+    }
+}
+
 
 
 //171. Excel Sheet Column Number
