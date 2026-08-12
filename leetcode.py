@@ -232,6 +232,18 @@ class Solution(object):
         else:
             return num % 9
         
+# 263. Ugly Number
+class Solution(object):
+    def isUgly(self, n):
+        if n <= 0:
+            return False
+
+        factors = [2, 3, 5]
+        for factor in factors:
+            while n % factor == 0:
+                n //= factor
+
+        return n == 1
 
 ##EJERCICIO 26
 

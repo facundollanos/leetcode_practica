@@ -271,7 +271,22 @@ public:
 };
 
 
-// 
+
+
+//263. Ugly Number
+bool isUgly(int n) {
+    if (n <= 0) {
+        return false;
+    }
+    int factors[] = {2, 3, 5};
+    for (int i=0;i<3;i++) {
+        while (n % factors[i] == 0) {
+            n /= factors[i];
+        }
+    }
+    return n == 1;
+}
+
 
 //171. Excel Sheet Column Number
 class Solution {
