@@ -245,6 +245,43 @@ class Solution(object):
 
         return n == 1
 
+
+
+# 268. Missing Number
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        v = [-1] * (n + 1)
+        for num in nums:
+            v[num] = num
+        for i in range(len(v)):
+            if v[i] == -1:
+                return i
+        return 0
+
+
+
+#278. First Bad Version 
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        first, last = 1, n
+
+        while first < last:
+            mid = first + (last - first) // 2
+
+            if isBadVersion(mid):
+                last = mid  # The first bad version could be mid or before.
+            else:
+                first = mid + 1  # The first bad version must be after mid.
+
+        return first  # At the end, first will be the first bad version.
+
+        
 ##EJERCICIO 26
 
 

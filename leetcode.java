@@ -307,6 +307,47 @@ class Solution {
 }
 
 
+// 268. Missing Number
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int[] v = new int[n+1];
+        Arrays.fill(v, -1);
+        for(int i = 0; i < nums.length; i++) {
+            v[nums[i]] = nums[i];
+        }
+        for(int i = 0; i < v.length; i++) {
+            if(v[i] == -1) return i;
+        }
+        return 0;
+    }
+}
+
+
+
+// 278. First Bad Version
+/* The isBadVersion API is defined in the parent class VersionControl.
+      boolean isBadVersion(int version); */
+
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int first = 1;
+        int last = n;
+
+        while (first < last) {
+            int mid = first + (last - first) / 2;
+
+            if (isBadVersion(mid)) {
+                last = mid; // The first bad version could be mid or before.
+            } else {
+                first = mid + 1; // The first bad version must be after mid.
+            }
+        }
+
+        return first; // At the end, first will be the first bad version.
+    }
+}
+
 //171. Excel Sheet Column Number
 
 class Solution {
