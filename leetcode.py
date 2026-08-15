@@ -281,8 +281,33 @@ class Solution:
 
         return first  # At the end, first will be the first bad version.
 
+# 283. Move Zeroes
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        left = 0
+
+        for right in range(len(nums)):
+            if nums[right] != 0:
+                nums[right], nums[left] = nums[left], nums[right]
+                left += 1
         
-##EJERCICIO 26
+        return nums
+
+# 290. Word Pattern
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+
+        s = s.split()
+
+        return (len(set(pattern)) ==
+                len(set(s)) ==
+                len(set(zip_longest(pattern,s))))
+
+
+# 292. Nim Game
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return n % 4 != 0
 
 
 ##171. Excel Sheet Column Number
