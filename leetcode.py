@@ -310,6 +310,29 @@ class Solution:
         return n % 4 != 0
 
 
+# 303. Range Sum Query - Immutable
+class NumArray:  # 68 ms, faster than 97.72%
+
+    def __init__(self, nums: List[int]):
+        self.preSum = nums  # pass by pointer!
+        for i in range(len(nums)-1):
+            self.preSum[i+1] += self.preSum[i]
+
+    def sumRange(self, left: int, right: int) -> int:
+        if left == 0: return self.preSum[right]
+        return self.preSum[right] - self.preSum[left-1]
+
+
+# 326. Power of Three
+# Python
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        if n <= 0:
+            return False
+        while n % 3 == 0:
+            n //= 3
+        return n == 1
+
 ##171. Excel Sheet Column Number
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:

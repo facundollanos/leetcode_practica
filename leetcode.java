@@ -400,6 +400,29 @@ class Solution {
 }
 
 
+// 303. Range Sum Query - Immutable
+class NumArray { // 6 ms, faster than 100.00%
+    int[] preSum;
+    public NumArray(int[] nums) {
+        preSum = nums; // pass by pointer!
+        for (int i = 1; i < preSum.length; ++i)
+            preSum[i] += preSum[i-1]; 
+    }
+    
+    public int sumRange(int left, int right) {
+        if (left == 0) return preSum[right];
+        return preSum[right] - preSum[left-1];
+    }
+}
+
+// 326. Power of Three
+public class Solution {
+    public boolean isPowerOfThree(int n) {
+        int maxPowerOf3 = 1162261467; // 3^19 is the largest power of 3 in int range
+        return n > 0 && maxPowerOf3 % n == 0;
+    }
+}
+
 //171. Excel Sheet Column Number
 
 class Solution {

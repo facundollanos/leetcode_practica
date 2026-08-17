@@ -387,7 +387,36 @@ public:
     }
 };
 
+// 303. Range Sum Query - Immutable
+class NumArray { // 12 ms, faster than 99.87%
+public:
+    vector<int>& preSum; // `preSum` will reference to `nums` array, no copy at all!
+    
+    NumArray(vector<int>& nums) : preSum(nums) {
+        for (int i = 1; i < preSum.size(); ++i)
+            preSum[i] += preSum[i-1]; 
+    }
+    
+    int sumRange(int left, int right) {
+        if (left == 0) return preSum[right];
+        return preSum[right] - preSum[left-1];
+    }
+};
 
+// 326. Power of Three
+
+
+// C++
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        if (n <= 0) return false;
+        while (n % 3 == 0) {
+            n /= 3;
+        }
+        return n == 1;
+    }
+};
 
 //171. Excel Sheet Column Number
 class Solution {
