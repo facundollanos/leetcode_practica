@@ -333,6 +333,36 @@ class Solution:
             n //= 3
         return n == 1
 
+
+# 338. Counting Bits
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        dp = [0] * (n + 1)
+        sub = 1
+
+        for i in range(1, n + 1):
+            if sub * 2 == i:
+                sub = i
+            
+            dp[i] = dp[i - sub] + 1
+        
+        return dp
+
+
+# 344. Reverse String
+class Solution:
+    def reverseString(self, s):
+
+        start = 0
+        end = len(s) - 1
+
+        while start <= end:
+
+            s[start], s[end] = s[end], s[start]
+
+            start += 1
+            end -= 1
+
 ##171. Excel Sheet Column Number
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
