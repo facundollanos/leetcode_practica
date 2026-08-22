@@ -22,3 +22,88 @@ class Solution {
         return maxLength;
     }
 }
+
+// 5. Longest Palindromic Substring
+class Solution {
+    public String longestPalindrome(String s) {
+        for (int length = s.length(); length > 0; length--) {
+            for (int start = 0; start <= s.length() - length; start++) {
+                if (check(start, start + length, s)) {
+                    return s.substring(start, start + length);
+                }
+            }
+        }
+
+        return "";
+    }
+
+    private boolean check(int i, int j, String s) {
+        int left = i;
+        int right = j - 1;
+
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+
+// 6. Zigzag Conversion
+
+class Solution {
+    public String convert(String s, int numRows) {
+       if (numRows == 1 || numRows >= s.length()) {
+            return s;
+        }
+
+        int idx = 0, d = 1;
+        List<Character>[] rows = new ArrayList[numRows];
+        for (int i = 0; i < numRows; i++) {
+            rows[i] = new ArrayList<>();
+        }
+
+        for (char c : s.toCharArray()) {
+            rows[idx].add(c);
+            if (idx == 0) {
+                d = 1;
+            } else if (idx == numRows - 1) {
+                d = -1;
+            }
+            idx += d;
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (List<Character> row : rows) {
+            for (char c : row) {
+                result.append(c);
+            }
+        }
+
+        return result.toString();        
+    }
+}
+
+// 7. Reverse Integer
+
+class Solution {
+    public int reverse(int x) {
+        int res = 0;
+        boolean isNegative = x < 0;
+        String strX = String.valueOf(Math.abs(x));
+        StringBuilder sb = new StringBuilder(strX).reverse();
+        
+        try {
+            res = Integer.parseInt(sb.toString());
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+        
+        return isNegative ? -res : res;       
+    }
+}
