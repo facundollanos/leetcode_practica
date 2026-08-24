@@ -107,3 +107,46 @@ class Solution {
         return isNegative ? -res : res;       
     }
 }
+
+// 11. Container With Most Water
+class Solution {
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        int left = 0;
+        int right = height.length - 1;
+
+        while (left < right) {
+            maxArea = Math.max(maxArea, (right - left) * Math.min(height[left], height[right]));
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;        
+    }
+}
+
+
+// 12. Integer to Roman
+class Solution {
+    public String intToRoman(int num) {
+        final int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        final String[] symbols = {"M", "CM", "D",  "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < values.length; ++i) {
+            if (num == 0)
+                break;
+            while (num >= values[i]) {
+                sb.append(symbols[i]);
+                num -= values[i];
+            }
+        }
+
+        return sb.toString();        
+    }
+}
