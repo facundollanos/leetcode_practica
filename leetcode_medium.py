@@ -120,3 +120,58 @@ class Solution:
             num -= count * value
 
         return ''.join(res)                
+
+
+# 15. 3Sum
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            
+            j = i + 1
+            k = len(nums) - 1
+
+            while j < k:
+                total = nums[i] + nums[j] + nums[k]
+
+                if total > 0:
+                    k -= 1
+                elif total < 0:
+                    j += 1
+                else:
+                    res.append([nums[i], nums[j], nums[k]])
+                    j += 1
+
+                    while nums[j] == nums[j-1] and j < k:
+                        j += 1
+        
+        return res
+
+
+# 16. 3Sum Closest
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        result = nums[0] + nums[1] + nums[2]
+
+        for i in range(len(nums) - 2):
+            left, right = i + 1, len(nums) - 1
+
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+
+                if abs(target - total) < abs(target - result):
+                    result = total
+
+                if total == target:
+                    return target
+                elif total < target:
+                    left += 1
+                else:
+                    right -= 1
+
+        return result
