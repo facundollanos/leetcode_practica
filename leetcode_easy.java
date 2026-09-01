@@ -518,6 +518,58 @@ class Solution {
     }
 }
 
+// 374. Guess Number Higher or Lower
+/** 
+ * Forward declaration of guess API.
+ * @param  num   your guess
+ * @return 	     -1 if num is higher than the picked number
+ *			      1 if num is lower than the picked number
+ *               otherwise return 0
+ * int guess(int num);
+ */
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+        int left = 1;
+        int right = n;
+
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            int rez = guess(middle);
+
+            if (rez == 0) {
+                return middle;
+            } else if (rez == -1) {
+                right = middle - 1;
+            } else {
+                left = middle + 1;
+            }
+        }
+
+        return -1;
+    }
+}
+
+// 383. Ransom Note
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character, Integer> magaHash = new HashMap<>();
+
+        for (char c : magazine.toCharArray()) {
+            magaHash.put(c, magaHash.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : ransomNote.toCharArray()) {
+            if (!magaHash.containsKey(c) || magaHash.get(c) <= 0) {
+                return false;
+            }
+            magaHash.put(c, magaHash.get(c) - 1);
+        }
+
+        return true;
+    }
+}
+
 //171. Excel Sheet Column Number
 
 class Solution {

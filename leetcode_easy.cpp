@@ -456,8 +456,102 @@ public:
     }
 };
 
+// 345. Reverse Vowels of a String
+class Solution {
+public:
+    string reverseVowels(string s) {
+        // Convert the input string to a character array.
+        string word = s;
+        int start = 0;
+        int end = s.length() - 1;
+        string vowels = "aeiouAEIOU";
+        
+        // Loop until the start pointer is no longer less than the end pointer.
+        while (start < end) {
+            // Move the start pointer towards the end until it points to a vowel.
+            while (start < end && vowels.find(word[start]) == string::npos) {
+                start++;
+            }
+            
+            // Move the end pointer towards the start until it points to a vowel.
+            while (start < end && vowels.find(word[end]) == string::npos) {
+                end--;
+            }
+            
+            // Swap the vowels found at the start and end positions.
+            swap(word[start], word[end]);
+            
+            // Move the pointers towards each other for the next iteration.
+            start++;
+            end--;
+        }
+        
+        // Return the modified string.
+        return word;
+    }
+};
 
 
+// 374. Guess Number Higher or Lower
+class Solution {
+public:
+    int guessNumber(int n) {
+        int left = 1, right = n;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int result = guess(mid);
+
+            if (result == 0) return mid;
+            else if (result == 1) left = mid + 1;
+            else right = mid - 1;
+        }
+
+        return -1;
+    }
+};
+
+// 383. Ransom Note
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character, Integer> magaHash = new HashMap<>();
+
+        for (char c : magazine.toCharArray()) {
+            magaHash.put(c, magaHash.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : ransomNote.toCharArray()) {
+            if (!magaHash.containsKey(c) || magaHash.get(c) <= 0) {
+                return false;
+            }
+            magaHash.put(c, magaHash.get(c) - 1);
+        }
+
+        return true;
+    }
+}
+
+
+
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        if (num == 0 || num == 1) return true;
+
+        int L = 1;
+        int R = num;
+
+        while (L <= R) {
+            long long M = L + (R - L) / 2;
+            long long sqr = M * M;
+
+            if (sqr == num) return true;
+            else if (sqr > num) R = M - 1;
+            else L = M + 1;
+        }
+        return false;
+    }
+};
 
 //171. Excel Sheet Column Number
 class Solution {

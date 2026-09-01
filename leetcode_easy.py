@@ -412,6 +412,35 @@ class Solution(object):
         return False
 
 
+# 374. Guess Number Higher or Lower
+class Solution(object):
+    def guessNumber(self, n):
+        left, right = 1, n
+        while left <= right:
+            mid = (left + right) // 2
+            result = guess(mid)
+            if result == 0:
+                return mid
+            elif result == -1:
+                right = mid - 1
+            else:
+                left = mid + 1
+
+# 383. Ransom Note
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        maga_hash = {}
+
+        for c in magazine:
+            maga_hash[c] = 1 + maga_hash.get(c, 0)
+
+        for c in ransomNote:
+            if c not in maga_hash or maga_hash[c] <= 0:
+                return False
+            maga_hash[c] -= 1
+        
+        return True
+
 ##171. Excel Sheet Column Number
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
