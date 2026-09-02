@@ -441,6 +441,46 @@ class Solution:
         
         return True
 
+
+# 389. Find the Difference
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        # Initialize a dictionary to store character counts
+        count = {}
+
+        # Count characters in string t
+        for c in t:
+            count[c] = count.get(c, 0) + 1
+
+        # Subtract counts for characters in string s
+        for c in s:
+            count[c] -= 1
+            if count[c] == 0:
+                del count[c]
+
+        # The remaining character in the dictionary is the difference
+        return list(count.keys())[0]
+
+        
+#387. First Unique Character in a String
+ class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        """
+        :type s: str
+        :rtype: int
+        """
+        # build hash map: character and how often it appears
+        count = collections.Counter(s)
+        
+        # find the index
+        for idx, ch in enumerate(s):
+            if count[ch] == 1:
+                return idx     
+        return -1
+
+
+
+
 ##171. Excel Sheet Column Number
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:

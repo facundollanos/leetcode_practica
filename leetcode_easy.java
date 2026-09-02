@@ -570,6 +570,47 @@ class Solution {
     }
 }
 
+
+// 389. Find the Difference
+class Solution {
+    public char findTheDifference(String s, String t) {
+        Map<Character, Integer> count = new HashMap<>();
+        
+        for (char c : t.toCharArray()) {
+            count.put(c, count.getOrDefault(c, 0) + 1);
+        }
+        
+        for (char c : s.toCharArray()) {
+            count.put(c, count.get(c) - 1);
+            if (count.get(c) == 0) {
+                count.remove(c);
+            }
+        }
+        
+        return (char) count.keySet().toArray()[0];        
+    }
+}
+
+// 387. First Unique Character in a String
+class Solution {
+    public int firstUniqChar(String s) {
+        HashMap<Character, Integer> count = new HashMap<Character, Integer>();
+        int n = s.length();
+        // build hash map : character and how often it appears
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            count.put(c, count.getOrDefault(c, 0) + 1);
+        }
+        
+        // find the index
+        for (int i = 0; i < n; i++) {
+            if (count.get(s.charAt(i)) == 1) 
+                return i;
+        }
+        return -1;
+    }
+}
+
 //171. Excel Sheet Column Number
 
 class Solution {

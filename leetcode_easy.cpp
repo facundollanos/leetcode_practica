@@ -531,6 +531,41 @@ class Solution {
     }
 }
 
+// 389. Find the Difference
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        std::unordered_map<char, int> count;
+        
+        for (char c : t) {
+            count[c]++;
+        }
+        
+        for (char c : s) {
+            count[c]--;
+            if (count[c] == 0) {
+                count.erase(c);
+            }
+        }
+        
+        return count.begin()->first;        
+    }
+};
+
+
+// 387. First Unique Character in a String
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int freq[26]={0};
+        for(auto i:s) freq[i-'a']++;
+        for(int i=0;i<s.length();i++){
+            if(freq[s[i]-'a']==1) return i;
+        }
+        return -1;
+    }
+};
+
 
 
 class Solution {
