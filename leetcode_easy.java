@@ -591,6 +591,39 @@ class Solution {
     }
 }
 
+// 392. Is Subsequence
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int sp = 0;
+        int tp = 0;
+
+        while (sp < s.length() && tp < t.length()) {
+            if (s.charAt(sp) == t.charAt(tp)) {
+                sp++;
+            }
+            tp++;
+        }
+
+        return sp == s.length();        
+    }
+}
+
+// 401. Binary Watch
+class Solution {
+
+    public List<String> readBinaryWatch(int turnedOn) {
+        List<String> ans = new ArrayList<String>();
+        for (int h = 0; h < 12; ++h) {
+            for (int m = 0; m < 60; ++m) {
+                if (Integer.bitCount(h) + Integer.bitCount(m) == turnedOn) {
+                    ans.add(h + ":" + (m < 10 ? "0" : "") + m);
+                }
+            }
+        }
+        return ans;
+    }
+}
+
 // 387. First Unique Character in a String
 class Solution {
     public int firstUniqChar(String s) {

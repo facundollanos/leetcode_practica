@@ -462,6 +462,10 @@ class Solution:
         return list(count.keys())[0]
 
         
+
+# 
+
+
 #387. First Unique Character in a String
  class Solution:
     def firstUniqChar(self, s: str) -> int:
@@ -479,7 +483,27 @@ class Solution:
         return -1
 
 
+# 392. Is Subsequence
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        sp = tp = 0
 
+        while sp < len(s) and tp < len(t):
+            if s[sp] == t[tp]:
+                sp += 1
+            tp += 1
+        
+        return sp == len(s)
+
+# 401. Binary Watch
+class Solution:
+    def readBinaryWatch(self, turnedOn: int) -> List[str]:
+        ans = list()
+        for h in range(12):
+            for m in range(60):
+                if bin(h).count("1") + bin(m).count("1") == turnedOn:
+                    ans.append(f"{h}:{m:02d}")
+        return ans
 
 ##171. Excel Sheet Column Number
 class Solution:
