@@ -212,3 +212,114 @@ class Solution {
         return result;
     }
 }
+
+// 17. Letter Combinations of a Phone Number
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> res = new ArrayList<>();
+        
+        if (digits == null || digits.length() == 0) {
+            return res;
+        }
+        
+        Map<Character, String> digitToLetters = new HashMap<>();
+        digitToLetters.put('2', "abc");
+        digitToLetters.put('3', "def");
+        digitToLetters.put('4', "ghi");
+        digitToLetters.put('5', "jkl");
+        digitToLetters.put('6', "mno");
+        digitToLetters.put('7', "pqrs");
+        digitToLetters.put('8', "tuv");
+        digitToLetters.put('9', "wxyz");
+        
+        backtrack(digits, 0, new StringBuilder(), res, digitToLetters);
+        
+        return res;        
+    }
+
+    private void backtrack(String digits, int idx, StringBuilder comb, List<String> res, Map<Character, String> digitToLetters) {
+        if (idx == digits.length()) {
+            res.add(comb.toString());
+            return;
+        }
+        
+        String letters = digitToLetters.get(digits.charAt(idx));
+        for (char letter : letters.toCharArray()) {
+            comb.append(letter);
+            backtrack(digits, idx + 1, comb, res, digitToLetters);
+            comb.deleteCharAt(comb.length() - 1);
+        }
+    }    
+}
+
+// 18. 4Sum
+
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        return kSum(nums, target, 0, 4);
+    }
+
+    public List<List<Integer>> kSum(int[] nums, long target, int start, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        // If we have run out of numbers to add, return res.
+        if (start == nums.length) {
+            return res;
+        }
+
+        // There are k remaining values to add to the sum. The
+        // average of these values is at least target / k.
+        long average_value = target / k;
+
+        // We cannot obtain a sum of target if the smallest value
+        // in nums is greater than target / k or if the largest
+        // value in nums is smaller than target / k.
+        if (
+            nums[start] > average_value || average_value > nums[nums.length - 1]
+        ) {
+            return res;
+        }
+
+        if (k == 2) {
+            return twoSum(nums, target, start);
+        }
+
+        for (int i = start; i < nums.length; ++i) {
+            if (i == start || nums[i - 1] != nums[i]) {
+                for (List<Integer> subset : kSum(
+                    nums,
+                    target - nums[i],
+                    i + 1,
+                    k - 1
+                )) {
+                    res.add(new ArrayList<>(Arrays.asList(nums[i])));
+                    res.get(res.size() - 1).addAll(subset);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    public List<List<Integer>> twoSum(int[] nums, long target, int start) {
+        List<List<Integer>> res = new ArrayList<>();
+        int lo = start, hi = nums.length - 1;
+
+        while (lo < hi) {
+            int currSum = nums[lo] + nums[hi];
+            if (currSum < target || (lo > start && nums[lo] == nums[lo - 1])) {
+                ++lo;
+            } else if (
+                currSum > target ||
+                (hi < nums.length - 1 && nums[hi] == nums[hi + 1])
+            ) {
+                --hi;
+            } else {
+                res.add(Arrays.asList(nums[lo++], nums[hi--]));
+            }
+        }
+
+        return res;
+    }
+}
