@@ -741,6 +741,66 @@ class Solution {
     }
 }
 
+
+//414. Third Maximum Number
+class Solution {
+    public int thirdMax(int[] nums) {
+        // Sort the array in non-increasing order.
+        Arrays.sort(nums);
+        
+        // Reverse array to make it non-increasing.
+        for (int index = 0; index < nums.length / 2; ++index) {
+            int temp = nums[index];
+            nums[index] = nums[nums.length - 1 - index];
+            nums[nums.length - 1 - index] = temp;
+        }
+        
+        int elemCounted = 1;
+        int prevElem = nums[0];
+        
+        for (int index = 1; index < nums.length; ++index) {
+            // Current element is different from previous.
+            if (nums[index] != prevElem) {
+                elemCounted += 1;
+                prevElem = nums[index];
+            }
+            
+            // If we have counted 3 numbers then return current number.
+            if (elemCounted == 3) {
+                return nums[index];
+            }
+        }
+        
+        // We never counted 3 distinct numbers, return largest number.
+        return nums[0];
+    }
+} 
+
+
+// 415. Add Strings
+class Solution {
+    public String addStrings(String num1, String num2) {
+        int i= num1.length()-1;
+        int j = num2.length()-1;
+        int carry =0;
+        StringBuilder sb = new StringBuilder();
+        while(i>=0||j>=0||carry!=0)
+        {
+            int d1=(i>=0)?num1.charAt(i)-'0':0;
+            int d2=(j>=0)?num2.charAt(j)-'0':0;
+            int sum = d1+d2+carry;
+             carry = sum/10;
+            sb.append(sum%10);
+            i--;
+            j--;
+        }
+        return sb.reverse().toString();
+        
+    }
+} 
+
+
+
 //171. Excel Sheet Column Number
 
 class Solution {

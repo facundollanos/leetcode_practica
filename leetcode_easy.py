@@ -556,6 +556,9 @@ class Solution:
 # 412. Fizz Buzz
 
 
+
+
+
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:
         ans = []
@@ -571,6 +574,47 @@ class Solution:
                 ans.append(str(i))
 
         return ans
+
+
+# 414. Third Maximum Number
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        # Sort the array.
+        nums.sort(reverse = True)
+        
+        elem_counted = 1
+        prev_elem = nums[0]
+        
+        for index in range(len(nums)):
+            # Current element is different from previous.
+            if nums[index] != prev_elem:
+                elem_counted += 1
+                prev_elem = nums[index]
+            
+            # If we have counted 3 numbers then return current number.
+            if elem_counted == 3:
+                return nums[index]
+        
+        # We never counted 3 distinct numbers, return largest number.
+        return nums[0]
+
+
+
+# 415. Add Strings
+ class Solution:
+    def addStrings(self, num1: str, num2: str) -> str:
+        i, j, carry = len(num1) - 1, len(num2) - 1, 0
+        result = ""
+        
+        while i >= 0 or j >= 0 or carry:
+            d1 = int(num1[i]) if i >= 0 else 0
+            d2 = int(num2[j]) if j >= 0 else 0
+            total = d1 + d2 + carry
+            carry = total // 10
+            result = str(total % 10) + result
+            i -= 1
+            j -= 1
+        return result
 
 
 ##171. Excel Sheet Column Number
