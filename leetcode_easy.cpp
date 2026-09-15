@@ -785,6 +785,42 @@ public:
 };
 
 
+// 434. Number of Segments in a String
+class Solution {
+public:
+    int countSegments(string s) {
+        int count=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]!=' '&&(i==0||s[i-1]==' ')){
+                count++;
+            }
+        }
+        return count;
+    }
+};
+
+
+
+// 441. Arranging Coins
+
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        long left = 1, right = n;
+        while(left <= right){
+            long mid = left + (right - left) / 2;
+            long coins_needed = mid * (mid + 1) / 2;
+            if(coins_needed == n) return mid;
+            else if(coins_needed < n) left = mid + 1;
+            else right = mid - 1;
+        }
+        return right;
+    }
+};
+
+
+// # # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
+
 
 //171. Excel Sheet Column Number
 class Solution {

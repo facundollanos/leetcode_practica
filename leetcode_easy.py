@@ -617,6 +617,34 @@ class Solution:
         return result
 
 
+
+# 434. Number of Segments in a String
+
+class Solution:
+    def countSegments(self, s):
+        return len(s.split())
+
+# 441. Arranging Coins
+
+class Solution:
+    def arrangeCoins(self, n: int) -> int:
+        left, right = 1, n
+        while left <= right:
+            mid = left + (right - left) // 2
+            coins_needed = mid * (mid + 1) // 2
+            if coins_needed == n:
+                return mid
+            elif coins_needed < n:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return right
+
+
+
+# # # # ## # # # ## # # # ## # # # # # # # # ## # # # #
+
+
 ##171. Excel Sheet Column Number
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
