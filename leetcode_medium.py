@@ -256,7 +256,7 @@ class Solution:
                     lo += 1
                     hi -= 1
 
-            return res
+            return res45
 
         nums.sort()
         return kSum(nums, target, 4)

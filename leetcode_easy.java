@@ -828,6 +828,45 @@ class Solution {
 }
 
 
+// 448. Find All Numbers Disappeared in an Array
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+        
+        List<Integer> result = new ArrayList<>();
+        for (int i = 1; i <= nums.length; i++) {
+            if (!numSet.contains(i)) {
+                result.add(i);
+            }
+        }
+        
+        return result;        
+    }
+}
+
+
+// 455. Assign Cookies
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int contentChildren = 0;
+        int cookieIndex = 0;
+        while (cookieIndex < s.length && contentChildren < g.length) {
+            if (s[cookieIndex] >= g[contentChildren]) {
+                contentChildren++;
+            }
+            cookieIndex++;
+        }
+        return contentChildren;
+    }
+
+}
+
+
 
 
 //# # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #

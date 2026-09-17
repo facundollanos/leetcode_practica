@@ -819,6 +819,38 @@ public:
 };
 
 
+// 448. Find All Numbers Disappeared in an Array
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+        content_children = 0
+        cookie_index = 0
+        while cookie_index < len(s) and content_children < len(g):
+            if s[cookie_index] >= g[content_children]:
+                content_children += 1
+            cookie_index += 1
+        return content_children
+
+// 455. Assign Cookies
+class Solution {
+public:
+    int findContentChildren(std::vector<int>& g, std::vector<int>& s) {
+        std::sort(g.begin(), g.end());
+        std::sort(s.begin(), s.end());
+        int contentChildren = 0;
+        int cookieIndex = 0;
+        while (cookieIndex < s.size() && contentChildren < g.size()) {
+            if (s[cookieIndex] >= g[contentChildren]) {
+                contentChildren++;
+            }
+            cookieIndex++;
+        }
+        return contentChildren;
+    }
+};
+
+
 // # # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 
 
