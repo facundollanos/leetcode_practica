@@ -867,6 +867,57 @@ class Solution {
 }
 
 
+// 459. Repeated Substring Pattern
+class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        int n = s.length();
+        for (int i = 1; i <= n / 2; i++) {
+            if (n % i == 0 && s.substring(0, i).repeat(n / i).equals(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+
+//461. Hamming Distance
+ class Solution {
+    public int hammingDistance(int x, int y) {
+        int count = 0;
+        
+        
+        if (x == y)
+            return count;
+        
+        
+        while (x > 0 || y > 0) {
+            int xBit = 0;
+            int yBit = 0;
+            
+            
+            if (x > 0) {
+                xBit = x % 2;
+                x = Math.floorDiv(x, 2);
+            }
+            
+            
+            if (y > 0) {
+                yBit = y % 2;
+                y = Math.floorDiv(y, 2);
+            }
+            
+            
+            if (xBit != yBit)
+                count++;
+        }
+        
+        
+        return count;
+    }
+}
+
+
 
 
 //# # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
