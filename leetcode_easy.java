@@ -986,6 +986,44 @@ class Solution {
 }
 
 
+// 485. Max Consecutive Ones
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int res = 0;
+        int count = 0;
+
+        for (int n : nums) {
+            if (n == 0) {
+                count = 0;
+            } else {
+                count++;
+            }
+
+            if (res < count) {
+                res = count;
+            }
+        }
+
+        return res;        
+    }
+}
+
+
+// 492. Construct the Rectangle
+class Solution {
+    public int[] constructRectangle(int area) {
+
+        int width = (int) Math.sqrt(area);
+
+        while (area % width != 0) {
+            width--;
+        }
+
+        return new int[] { area / width, width };
+    }
+}
+
+
 //# # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 
 

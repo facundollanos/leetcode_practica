@@ -962,7 +962,41 @@ public:
 };
 
 
+// 485. Max Consecutive Ones
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int res = 0;
+        int count = 0;
 
+        for (int n : nums) {
+            if (n == 0) {
+                count = 0;
+            } else {
+                count++;
+            }
+
+            if (res < count) {
+                res = count;
+            }
+        }
+
+        return res;        
+    }
+};
+
+// 492. Construct the Rectangle
+class Solution {
+public:
+        vector<int> constructRectangle(int area) {
+    for (int W = sqrt(area); W >= 1; W--) {
+        if (area % W == 0) {
+            return {area / W, W};
+        }
+    }
+    return {};
+    }
+};
 
 // # # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 
