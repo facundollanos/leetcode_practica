@@ -752,6 +752,59 @@ class Solution:
         return result
 
 
+        # 485. Max Consecutive Ones
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        res = 0
+        count = 0
+
+        for n in nums:
+            if n == 0:
+                count = 0
+            else:
+                count += 1
+            
+            if res < count:
+                res = count
+        
+        return res
+
+
+        # 492. Construct the Rectangle
+class Solution:
+    def constructRectangle(self, area: int) -> List[int]:
+        for l in range(int(area**0.5), 0, -1):            
+            if area % l == 0: 
+                return [area // l, l]
+
+
+# 495. Teemo Attacking
+class Solution:
+    def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
+        n = len(timeSeries)
+        if n == 0:
+            return 0
+        
+        total = 0
+        for i in range(n - 1):
+            total += min(timeSeries[i + 1] - timeSeries[i], duration)
+        return total + duration
+
+
+#496. Next Greater Element I
+ class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        next_greater = {}
+        stack = []
+
+        for num in reversed(nums2):
+            while stack and stack[-1] <= num:
+                stack.pop()
+            next_greater[num] = -1 if not stack else stack[-1]
+            stack.append(num)
+
+        return [next_greater[num] for num in nums1]
+
 
 
 
