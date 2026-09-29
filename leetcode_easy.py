@@ -805,6 +805,47 @@ class Solution:
 
         return [next_greater[num] for num in nums1]
 
+# 500. Keyboard Row
+class Solution(object):
+    def findWords(self, words):
+        m = {}
+        for c in "qwertyuiop":
+            m[c] = 1
+        for c in "asdfghjkl":
+            m[c] = 2
+        for c in "zxcvbnm":
+            m[c] = 3
+        ans = []
+        for w in words:
+            lw = w.lower()
+            r = m[lw[0]]
+            if all(m[ch] == r for ch in lw):
+                ans.append(w)
+        return ans
+
+#501. Find Mode in Binary Search Tree
+ class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        def dfs(node, counter):
+            if not node:
+                return
+            
+            counter[node.val] += 1
+            dfs(node.left, counter)
+            dfs(node.right, counter)
+            
+        counter = defaultdict(int)
+        dfs(root, counter)
+        max_freq = max(counter.values())
+        
+        ans = []
+        for key in counter:
+            if counter[key] == max_freq:
+                ans.append(key)
+        
+        return ans
+
+
 
 
 
