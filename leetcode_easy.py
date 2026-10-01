@@ -845,6 +845,50 @@ class Solution(object):
         
         return ans
 
+# 504. Base 7
+class Solution:
+    def convertToBase7(self, num: int) -> str:
+        if num == 0: return "0"
+        res = ""
+        n = abs(num)
+
+        while n > 0:
+            res += str(n%7)
+            n//=7
+
+        res = res[::-1]
+        if num < 0: res = "-" + res 
+        return res
+
+
+# 506. Relative Ranks
+
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        N = len(score)
+        score_copy = score.copy()
+       
+        # Save the index of each athlete
+        score_to_index = defaultdict(int)
+        for i in range(N):
+            score_to_index[score_copy[i]] = i
+
+        # Sort score copy in descending order
+        score_copy.sort(reverse = True)
+
+        # Assign ranks to athletes
+        rank = [" "] * N
+        for i in range(N):
+            if i == 0:
+                rank[score_to_index[score_copy[i]]] = "Gold Medal"
+            elif i == 1:
+                rank[score_to_index[score_copy[i]]] = "Silver Medal"
+            elif i == 2:
+                rank[score_to_index[score_copy[i]]] = "Bronze Medal"
+            else:
+                rank[score_to_index[score_copy[i]]] = str(i + 1)
+
+        return rank
 
 
 
