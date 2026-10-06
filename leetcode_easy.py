@@ -918,8 +918,20 @@ class Solution:
     def fib(self, n):
         return self.fib_nums[n]
 
+# 520. Detect Capital
+
+class Solution:
+    def detectCapitalUse(self, s: str) -> bool:
+        return bool(fullmatch(r'[a-z]+|[A-Z]+|[A-Z][a-z]*',s))
 
 
+#521. Longest Uncommon Subsequence I
+ class Solution:
+    def findLUSlength(self, a: str, b: str) -> int:
+        if a == b:
+            return -1
+        else:
+            return max(len(a), len(b))  
 
 
 
