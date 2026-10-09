@@ -1268,8 +1268,54 @@ public:
 };
 
 
-// 
+//541. Reverse String II
+class Solution {
+public:
+    string reverseStr(string s, int k) {
 
+        int step = 2 * k;
+
+        for(int i = 0; i < s.length(); i += step){
+
+            int start = i;
+            int end = min(i + k - 1, (int)s.length() - 1);
+
+            while(start < end){
+                swap(s[start], s[end]);
+                start++;
+                end--;
+            }
+        }
+
+        return s;
+    }
+};
+
+
+//543. Diameter of Binary Tree
+ class Solution {
+    int res = 0;
+
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        dfs(root);
+        return res;        
+    }
+
+private:
+    int dfs(TreeNode* root) {
+        if (!root) {
+            return 0;
+        }
+
+        int l = dfs(root->left);
+        int r = dfs(root->right);
+
+        res = std::max(res, l + r);
+
+        return 1 + std::max(l, r);
+    }    
+};
 
 
 

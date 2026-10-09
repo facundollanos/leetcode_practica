@@ -953,9 +953,35 @@ class Solution(object):
         return self.ans
 
 
-# 
+# 541. Reverse String II
+class Solution(object):
+    def reverseStr(self, s, k):
+        a = list(s)
+        for i in xrange(0, len(a), 2*k):
+            a[i:i+k] = reversed(a[i:i+k])
+        return "".join(a)
 
 
+# 543. Diameter of Binary Tree
+
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        res = 0
+
+        def dfs(root):
+            if not root:
+                return 0
+            
+            l = dfs(root.left)
+            r = dfs(root.right)
+
+            nonlocal res
+            res = max(res, l + r)
+
+            return 1 + max(l, r)
+
+        dfs(root)
+        return res
 
 
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #

@@ -1278,7 +1278,46 @@ class Solution {
 
 
 
-// 
+//541. Reverse String II
+class Solution {
+    public String reverseStr(String s, int k) {
+        char[] a = s.toCharArray();
+        for (int start = 0; start < a.length; start += 2 * k) {
+            int i = start, j = Math.min(start + k - 1, a.length - 1);
+            while (i < j) {
+                char tmp = a[i];
+                a[i++] = a[j];
+                a[j--] = tmp;
+            }
+        }
+        return new String(a);
+    }
+}
+
+
+
+// 543. Diameter of Binary Tree
+class Solution {
+    int res = 0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        dfs(root);
+        return res;        
+    }
+
+    private int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int l = dfs(root.left);
+        int r = dfs(root.right);
+
+        res = Math.max(res, l + r);
+
+        return 1 + Math.max(l, r);
+    }    
+}
 
 
 
