@@ -984,6 +984,46 @@ class Solution:
         return res
 
 
+# 551. Student Attendance Record I
+
+class Solution(object):
+    def checkRecord(self, s):
+        a_count = 0
+        l_streak = 0
+        
+        for c in s:
+            if c == 'A':
+                a_count += 1
+                if a_count >= 2:
+                    return False
+            if c == 'L':
+                l_streak += 1
+                if l_streak >= 3:
+                    return False
+            else:
+                l_streak = 0
+        
+        return True
+
+#557. Reverse Words in a String III
+ class Solution:
+    def reverseWords(self, s: str) -> str:
+        result = []
+        last_space_index = -1
+
+        for str_index in range(len(s)):
+            if str_index == len(s) - 1 or s[str_index] == ' ':
+                reverse_str_index = str_index if str_index == len(s) - 1 else str_index - 1
+                while reverse_str_index > last_space_index:
+                    result.append(s[reverse_str_index])
+                    reverse_str_index -= 1
+                if str_index != len(s) - 1:
+                    result.append(' ')
+                last_space_index = str_index
+
+        return ''.join(result)
+
+
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #
 
 

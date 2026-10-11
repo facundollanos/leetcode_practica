@@ -1319,6 +1319,62 @@ class Solution {
     }    
 }
 
+//551. Student Attendance Record I
+ class Solution {
+    public boolean checkRecord(String s) {
+        int absentCount = 0;
+        int lateCount = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (ch == 'A') {
+                absentCount++;
+                if (absentCount >= 2) {
+                    return false;
+                }
+            }
+
+            if (ch == 'L') {
+                lateCount++;
+                if (lateCount >= 3) {
+                    return false;
+                }
+            } else {
+                lateCount = 0;
+            }
+        }
+
+        return true;
+    }
+}
+
+
+
+//557. Reverse Words in a String III
+ class Solution {
+
+    public String reverseWords(String s) {
+        StringBuilder result = new StringBuilder();
+        int lastSpaceIndex = -1;
+        for (int strIndex = 0; strIndex < s.length(); strIndex++) {
+            if ((strIndex == s.length() - 1) || s.charAt(strIndex) == ' ') {
+                int reverseStrIndex = (strIndex == s.length() - 1) ? strIndex : strIndex - 1;
+                for (; reverseStrIndex > lastSpaceIndex; reverseStrIndex--) {
+                    result.append(s.charAt(reverseStrIndex));
+                }
+                if (strIndex != s.length() - 1) {
+                    result.append(' ');
+                }
+                lastSpaceIndex = strIndex;
+            }
+        }
+        return new String(result);
+    }
+}
+
+
+
 
 
 //# # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #

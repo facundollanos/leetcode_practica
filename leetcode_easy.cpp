@@ -1319,6 +1319,46 @@ private:
 
 
 
+//551. Student Attendance Record I
+bool checkRecord(string s) {
+    int a=0, l=0;
+    for(int i=0;i<s.size();i++) {
+        if(s[i]=='A') a++;
+        if(s[i]=='L') l++;
+        else l=0;
+        if(a>=2||l>2) return false;
+    }
+    return true;
+}
+
+
+
+//557. Reverse Words in a String III
+class Solution {
+public:
+    string reverseWords(string s) {
+        string result;
+        int lastSpaceIndex = -1;
+        for (int strIndex = 0; strIndex < s.length(); strIndex++) {
+            if ((strIndex == s.length() - 1) || s[strIndex] == ' ') {
+                int reverseStrIndex =
+                    (strIndex == s.length() - 1) ? strIndex : strIndex - 1;
+                for (; reverseStrIndex > lastSpaceIndex; reverseStrIndex--) {
+                    result += s[reverseStrIndex];
+                }
+                if (strIndex != s.length() - 1) {
+                    result += ' ';
+                }
+                lastSpaceIndex = strIndex;
+            }
+        }
+        return result;
+    }
+}; 
+
+
+
+
 
 // # # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 
