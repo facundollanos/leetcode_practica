@@ -1357,6 +1357,36 @@ public:
 }; 
 
 
+// 559. Maximum Depth of N-ary Tree
+class Solution {
+public:
+    int maxDepth(Node* root) {
+        if(root == nullptr) return 0;
+
+        int maxHeight = 0;
+        for(Node* child : root->children){
+            maxHeight = max(maxHeight, maxDepth(child));
+        }
+
+        return 1 + maxHeight;
+    }
+};
+
+
+// 561. Array Partition
+
+class Solution {
+public:
+    int arrayPairSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int sum = 0;
+        for (int i = 0; i < nums.size(); i += 2) {
+            sum += nums[i];
+        }
+        return sum;
+    }
+};
+
 
 
 

@@ -1024,6 +1024,30 @@ class Solution(object):
         return ''.join(result)
 
 
+
+# 559. Maximum Depth of N-ary Tree
+class Solution:
+    def maxDepth(self, root):
+        if root is None:
+            return 0
+
+        maxHeight = 0
+        for child in root.children:
+            maxHeight = max(maxHeight, self.maxDepth(child))
+
+        return 1 + maxHeight
+
+
+# 561. Array Partition
+class Solution:
+    def arrayPairSum(self, nums: List[int]) -> int:
+        return sum(sorted(nums)[::2])
+        
+# Time : 332 ms
+# Memory : 16.5 M
+
+
+
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #
 
 

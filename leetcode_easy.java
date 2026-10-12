@@ -1374,6 +1374,49 @@ class Solution {
 }
 
 
+// 559. Maximum Depth of N-ary Tree
+class Solution {
+    public int maxDepth(Node root) {
+        if(root == null) return 0;
+
+        int maxHeight = 0;
+        for(Node child : root.children){
+            maxHeight = Math.max(maxHeight, maxDepth(child));
+        }
+
+        return 1 + maxHeight;
+    }
+}
+
+
+
+
+// 561. Array Partition
+public class Solution {
+
+	public int arrayPairSum(int[] nums) {
+		int[] exist = new int[20001];
+		for (int i = 0; i < nums.length; i++) {
+			exist[nums[i] + 10000]++;
+		}
+		int sum = 0;
+		boolean odd = true;
+		for (int i = 0; i < exist.length; i++) {
+			while (exist[i] > 0) {
+				if (odd) {
+					sum += i - 10000;
+				}
+				odd = !odd;
+				exist[i]--;
+			}
+		}
+		return sum;
+	}
+	
+}
+
+
+
 
 
 
