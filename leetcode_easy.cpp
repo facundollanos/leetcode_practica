@@ -1389,6 +1389,61 @@ public:
 
 
 
+//563. Binary Tree Tilt
+class Solution {
+public:
+
+    int solve(TreeNode* root, int& ans) {
+        if (root == nullptr) {
+            return 0;
+        }
+
+        int left = solve(root->left, ans);
+        int right = solve(root->right, ans);
+
+        // Tilt of current node
+        ans += abs(left - right);
+
+        // Return sum of current subtree
+        return root->val + left + right;
+    }
+
+    int findTilt(TreeNode* root) {
+        int ans = 0;
+
+        solve(root, ans);
+
+        return ans;
+    }
+}; 
+
+
+//566. Reshape the Matrix
+
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int m = mat.size();
+        int n = mat[0].size();
+        if (m * n != r * c) return mat;
+
+        vector<vector<int>> reshaped(r, vector<int>(c));
+        int count = 0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                reshaped[count / c][count % c] = mat[i][j];
+                count++;
+            }
+        }
+
+        return reshaped;
+    }
+};
+
+
+
+
 
 // # # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 

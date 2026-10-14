@@ -1416,6 +1416,53 @@ public class Solution {
 }
 
 
+// 563. Binary Tree Tilt
+class Solution {
+    private int totalTilt = 0;
+
+    protected int valueSum(TreeNode node) {
+        if (node == null)
+            return 0;
+
+        int leftSum = this.valueSum(node.left);
+        int rightSum = this.valueSum(node.right);
+        int tilt = Math.abs(leftSum - rightSum);
+        this.totalTilt += tilt;
+
+        // return the sum of values starting from this node.
+        return node.val + leftSum + rightSum;
+    }
+
+    public int findTilt(TreeNode root) {
+        this.totalTilt = 0;
+        this.valueSum(root);
+        return this.totalTilt;
+    }
+}
+
+
+//566. Reshape the Matrix
+ 
+class Solution {
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+        int m = mat.length;
+        int n = mat[0].length;
+
+        if (m * n != r * c) return mat;
+
+        int[][] reshaped = new int[r][c];
+        int count = 0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                reshaped[count / c][count % c] = mat[i][j];
+                count++;
+            }
+        }
+
+        return reshaped;
+    }
+}
 
 
 
