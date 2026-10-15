@@ -1466,6 +1466,54 @@ class Solution {
 
 
 
+// 572. Subtree of Another Tree
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root == null){
+            return false;
+        }
+        if (isSameTree(root, subRoot)) {
+            return true;
+        }
+
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+    private boolean isSameTree(TreeNode p, TreeNode q){
+        if(p == null && q == null){
+            return true;
+        }
+        if(p == null || q == null){
+            return false;
+        }
+        if(p.val != q.val){
+            return false;
+        }
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+
+    }
+}
+
+
+
+
+// 575. Distribute Candies
+
+class Solution {
+    public int distributeCandies(int[] candyType) {
+        Set<Integer> set = new HashSet<>();
+        int n = candyType.length;
+        for(int i=0;i<n;i++)
+        set.add(candyType[i]);
+
+        int m = set.size();
+        return Math.min(m,n/2);
+        
+    }
+}
+
+
+
+
 
 //# # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 

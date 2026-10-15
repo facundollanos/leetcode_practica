@@ -1441,6 +1441,53 @@ public:
     }
 };
 
+// 572. Subtree of Another Tree
+class Solution {
+    bool isSame(TreeNode* root,TreeNode* subRoot){
+        if(subRoot!=nullptr&&root!=nullptr){
+            if(root->val==subRoot->val){
+                return isSame(root->left,subRoot->left)&&isSame(root->right,subRoot->right);
+            }
+            return false;
+        }
+        if(subRoot==root){
+            return true;
+        }
+        else{return false;}
+    }
+public:
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        if(root!=nullptr){
+            if(root->val==subRoot->val){
+                if(isSame(root,subRoot)){
+                    return true;
+                }
+            }
+            return isSubtree(root->left,subRoot)||isSubtree(root->right,subRoot);
+        }
+        return false;
+    }
+};
+
+
+
+// 575. Distribute Candies
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        int x = candyType.size() / 2, count = 0;
+        sort(candyType.begin(),candyType.end());
+        for(int i = 0; i < candyType.size()-1; i++){
+            if(candyType[i] != candyType[i+1]) count++;
+        }
+        count++;
+        if(x < count) return x;
+        return count;
+    }
+};
+
+
+
 
 
 
