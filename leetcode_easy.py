@@ -1117,6 +1117,48 @@ class Solution:
 
 
 
+# 589. N-ary Tree Preorder Traversal
+class Solution(object):
+    def preorder(self, root):
+        # To store the output result...
+        output = []
+        self.traverse(root, output)
+        return output
+    def traverse(self, root, output):
+        # Base case: If root is none...
+        if root is None: return
+        # Append the value of the root node to the output...
+        output.append(root.val)
+        # Recursively traverse each node in the children array...
+        for child in root.children:
+            self.traverse(child, output)
+
+
+
+#590. N-ary Tree Postorder Traversal
+
+ class Solution:
+    def postorder(self, root: "Node") -> List[int]:
+        result = []
+        if not root:
+            return result
+        self._traverse_postorder(root, result)
+        return result
+
+    def _traverse_postorder(
+        self, current_node: "Node", postorder_list: List[int]
+    ) -> None:
+        if not current_node:
+            return
+
+        # First, visit all children
+        for child_node in current_node.children:
+            self._traverse_postorder(child_node, postorder_list)
+
+        # Then, add the current node's value
+        postorder_list.append(current_node.val)
+
+
 
 
 

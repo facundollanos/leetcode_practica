@@ -1488,6 +1488,62 @@ public:
 
 
 
+// 589. N-ary Tree Preorder Traversal
+
+class Solution {
+public:
+    // To store the output result...
+    vector<int> output;
+    void traverse(Node* root) {
+        // Base case: if the tree is empty...
+        if(root == NULL) return;
+        // Push the value of the root node to the output...
+        output.push_back(root->val);
+        // Recursively traverse each node in the children array...
+        for(auto node:root->children)
+            traverse(node);
+    }
+    vector<int> preorder(Node* root) {
+        output.clear();
+        traverse(root);
+        return output;
+    }
+};
+
+
+
+
+// 590. N-ary Tree Postorder Traversal
+class Solution {
+public:
+    vector<int> postorder(Node* root) {
+        vector<int> result;
+        if (root == nullptr) {
+            return result;
+        }
+        traversePostorder(root, result);
+        return result;
+    }
+
+private:
+    void traversePostorder(Node* currentNode, vector<int>& postorderList) {
+        if (currentNode == nullptr) {
+            return;
+        }
+
+        // First, visit all children
+        for (Node* childNode : currentNode->children) {
+            traversePostorder(childNode, postorderList);
+        }
+
+        // Then, add the current node's value
+        postorderList.push_back(currentNode->val);
+    }
+};
+
+
+
+
 
 
 
