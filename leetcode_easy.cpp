@@ -1707,6 +1707,53 @@ public:
     }
 };
 
+// 643. Maximum Average Subarray I
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        int sum = 0;
+        for (int i = 0; i < k; i++) sum += nums[i];
+        int maxSum = sum;
+        
+        for (int i = k; i < nums.size(); i++) {
+            sum = sum - nums[i - k] + nums[i];
+            maxSum = max(maxSum, sum);
+        }
+        
+        return (double) maxSum / k;
+    }
+};
+
+
+//645. Set Mismatch
+
+
+class Solution {
+public:
+    std::vector<int> findErrorNums(std::vector<int>& nums) {
+        int dup = -1, missing = -1;
+        
+        for (int i = 1; i <= nums.size(); i++) {
+            int count = 0;
+            for (int j = 0; j < nums.size(); j++) {
+                if (nums[j] == i) {
+                    count++;
+                }
+            }
+            if (count == 2) {
+                dup = i;
+            } else if (count == 0) {
+                missing = i;
+            }
+        }
+        
+        return {dup, missing};
+    }
+};
+
+
+
+
 
 
 
