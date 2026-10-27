@@ -1320,7 +1320,34 @@ class Solution:
         return [dup, missing]
 
 
+#653. Two Sum IV - Input is a BST
+ 
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        seen = set()
 
+        def dfs(node):
+            if not node:
+                return False
+            if k - node.val in seen:
+                return True
+            seen.add(node.val)
+            return dfs(node.left) or dfs(node.right)
+
+        return dfs(root)
+
+# 657. Robot Return to Origin
+
+class Solution(object):
+    def judgeCircle(self, moves):
+        x = y = 0
+        for move in moves:
+            if move == 'U': y -= 1
+            elif move == 'D': y += 1
+            elif move == 'L': x -= 1
+            elif move == 'R': x += 1
+
+        return x == y == 0
 
 
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #

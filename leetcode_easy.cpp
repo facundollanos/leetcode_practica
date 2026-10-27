@@ -1752,6 +1752,36 @@ public:
 };
 
 
+// 653. Two Sum IV - Input is a BST
+class Solution {
+    unordered_set<int> set;
+
+public:
+    bool findTarget(TreeNode* root, int k) {
+        if (!root) return false;
+        if (set.count(k - root->val)) return true;
+        set.insert(root->val);
+        return findTarget(root->left, k) || findTarget(root->right, k);
+    }
+};
+
+
+
+//657. Robot Return to Origin
+ class Solution {
+public:
+    bool judgeCircle(string moves) {
+        int x = 0, y = 0;
+        for (char m : moves) {
+            if (m == 'R') x++;
+            else if (m == 'L') x--;
+            else if (m == 'U') y++;
+            else if (m == 'D') y--;
+        }
+        return x == 0 && y == 0;
+    }
+};
+
 
 
 
