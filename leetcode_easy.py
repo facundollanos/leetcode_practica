@@ -1399,6 +1399,17 @@ def findSecondMinimumValue(self, root):
     return self.ans if self.ans < float('inf') else -1
 
 
+# 674. Longest Continuous Increasing Subsequence
+class Solution(object):
+    def findLengthOfLCIS(self, nums):
+        ans = anchor = 0
+        for i in range(len(nums)):
+            if i and nums[i-1] >= nums[i]: anchor = i
+            ans = max(ans, i - anchor + 1)
+        return ans
+
+
+
 
 
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #
