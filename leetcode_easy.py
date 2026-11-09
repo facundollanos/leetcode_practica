@@ -1428,8 +1428,30 @@ class Solution:
             right -= 1
         return True
 
+# 682. Baseball Game
+
+class Solution(object):
+    def calPoints(self, ops):
+        stack = []
+        for op in ops:
+            if op == '+':
+                stack.append(stack[-1] + stack[-2])
+            elif op == 'C':
+                stack.pop()
+            elif op == 'D':
+                stack.append(2 * stack[-1])
+            else:
+                stack.append(int(op))
+
+        return sum(stack)
 
 
+# 693. Binary Number with Alternating Bits
+class Solution(object):
+    def hasAlternatingBits(self, n):
+        bits = bin(n)
+        return all(bits[i] != bits[i+1]
+                   for i in range(len(bits) - 1))
 
 
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #
