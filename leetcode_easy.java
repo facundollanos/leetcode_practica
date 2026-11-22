@@ -2046,6 +2046,48 @@ class Solution {
 }
 
 
+// 705. Design HashSet
+class MyHashSet {
+    private boolean[] mp;
+
+    public MyHashSet() {
+        mp = new boolean[1000001];
+        Arrays.fill(mp, false);
+    }
+
+    public void add(int key) {
+        mp[key] = true;
+    }
+
+    public void remove(int key) {
+        mp[key] = false;
+    }
+
+    public boolean contains(int key) {
+        return mp[key];
+    }
+}
+
+//706. Design HashMap
+ 
+class MyHashMap {
+    int[] data;
+    public MyHashMap() {
+        data = new int[1000001];
+        Arrays.fill(data, -1);
+    }
+    public void put(int key, int val) {
+        data[key] = val;
+    }
+    public int get(int key) {
+        return data[key];
+    }
+    public void remove(int key) {
+        data[key] = -1;
+    }
+}
+
+
 
 
 //# # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #

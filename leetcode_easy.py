@@ -1528,6 +1528,40 @@ class Solution:
         return -1
 
 
+# 705. Design HashSet
+class MyHashSet:
+
+    def __init__(self):
+        self.mp=defaultdict(int)
+        
+
+    def add(self, key: int) -> None:
+        self.mp[key]=True
+        
+
+    def remove(self, key: int) -> None:
+        self.mp[key]=False
+
+    def contains(self, key: int) -> bool:
+        return self.mp[key]
+
+
+# 706. Design HashMap
+class MyHashMap:
+    def __init__(self):
+        self.data = [None] * 1000001
+    def put(self, key: int, val: int) -> None:
+        self.data[key] = val
+    def get(self, key: int) -> int:
+        val = self.data[key]
+        return val if val != None else -1
+    def remove(self, key: int) -> None:
+        self.data[key] = None
+
+
+
+
+
 
 
 # # # # ## # # # ## # # # ## # # # # # # # # ## # # # #

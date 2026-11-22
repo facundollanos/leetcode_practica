@@ -2027,6 +2027,49 @@ public:
 };
 
 
+// 705. Design HashSet
+class MyHashSet {
+private:
+    std::vector<bool> mp;
+
+public:
+    MyHashSet() {
+        mp.resize(1000001, false);
+    }
+
+    void add(int key) {
+        mp[key] = true;
+    }
+
+    void remove(int key) {
+        mp[key] = false;
+    }
+
+    bool contains(int key) {
+        return mp[key];
+    }
+};
+
+
+// 706. Design HashMap
+class MyHashMap {
+public:
+    int data[1000001];
+    MyHashMap() {
+        fill(data, data + 1000001, -1);
+    }
+    void put(int key, int val) {
+        data[key] = val;
+    }
+    int get(int key) {
+        return data[key];
+    }
+    void remove(int key) {
+        data[key] = -1;
+    }
+};
+
+
 // # # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # ## # # # #
 
 
